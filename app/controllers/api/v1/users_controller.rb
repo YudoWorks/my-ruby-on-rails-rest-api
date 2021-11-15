@@ -3,13 +3,14 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      before_action :find_user, only: %i[show update destroy]
+
       def index
         @users = User.all
         render json: @users
       end
 
       def show
-        @user = User.find(params[:id])
         render json: @user
       end
 
@@ -23,7 +24,6 @@ module Api
       end
 
       def update
-        @user = User.find(params[:id])
         if @user
           @user.update(user_params)
           render json: { message: 'User successfully updated.' }, status: 200
@@ -33,7 +33,6 @@ module Api
       end
 
       def destroy
-        @user = User.find(params[:id])
         if @user
           @user.destroy
           render json: { message: 'User successfully deleted.' }, status: 200
@@ -46,6 +45,10 @@ module Api
 
       def user_params
         params.require(:user).permit(:username, :password)
+      end
+
+      def find_user
+        @user = User.find(params[:id])
       end
     end
   end
