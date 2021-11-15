@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   namespace :api do
-    namespace :v1 do 
+    namespace :v1 do
       resource :users do
         resource :facts
       end
