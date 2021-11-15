@@ -6,3 +6,12 @@
 | Dependency | Version |
 | ----- | ----- |
 | Ruby | 2.7.3p183 |
+
+## How to use
+
+``` rails server ```
+
+## API
+| Method | API | Description |
+| ----- | ----- | ----- |
+| GET | http://localhost:3000/api/v1/users/:id/facts | get all facts with certain user |
